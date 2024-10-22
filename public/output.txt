@@ -1,0 +1,115 @@
+Linhas presentes no PDF1 e ausentes no PDF2:
+
+PDF1: 1 
+PDF1: 2 
+PDF1:  A  mensagem  DOCCOB–Documento  de  Cobrança  é gerada  pelas  Transportadoras  para  transmissão  às  empresas  Clientes 
+PDF1: (Contratantes do frete ou Embarcadoras), visando fornecer uma cópia eletrônica da Nota Fiscal/Fatura de serviço emitida 
+PDF1: para a cobrança dos serviços de transporte de carga prestados à Embarcadora. 
+PDF1:  Essa  cobrança  deverá  seguir  os  critérios  acordados  entre  as  partes  em  relação  ao  período  de  cobrança  (semanal, 
+PDF1: quinzenal, etc.) e em relação ao que cobrar ou não (entregas completas, parciais, etc.). 
+PDF1:  A geração/gravação dos registros que compõem esse arquivo pode ser Condicional, ou seja, o registro pode ou não 
+PDF1: ser gerado em função de uma determinada situação, ou Mandatório, nesse caso, o registro deve ser sempre gerado, 
+PDF1: pois a falta desse registro irá caracterizar erro de formatação do arquivo. 
+PDF1:  Os registros que compõem esse arquivo são de tamanho fixo, todos devem possuir o mesmo tamanho conforme especificado 
+PDF1: no lay-out. Caso haja alguma dificuldade para gerar os registros com essa característica, recomendamos gravar um 
+PDF1: caractere, por exemplo, ‘.’ (ponto) ou ‘*’ (asterisco) na última posição do registro. 
+PDF1:  Respeitar o número de ocorrências definido para cada registro, isso vale tanto para a geração do arquivo, como 
+PDF1: também para a leitura. A não observação dessa definição poderá acarretar erro no processamento do arquivo. 
+PDF1: - A = Indica que o campo é alfanumérico. 
+PDF1: Seu conteúdo deve ser alinhado à esquerda e completado até seu tamanho máximo com espaços à direita. 
+PDF1: - N = Indica que o campo é numérico. 
+PDF1: Seu conteúdo deve ser alinhado à direita e completado até seu tamanho máximo com zeros à esquerda. 
+PDF1: - 9 = O Número após a letra, indica o tamanho total/máximo ocupado pelo campo. 
+PDF1: Caso o campo possua alguma casa decimal, por exemplo, campo de valor, a representação será: 9,2, onde 9 
+PDF1: é o número de casas inteiras e 2 o número de casas decimais, o tamanho total do campo é de 11 posições. 
+PDF1: NÃO há representação explícita do ponto/vírgula decimal. 
+PDF1: Exemplos: A 35, campo alfanumérico de 35 posições; 
+PDF1:   N 6, campo numérico de 6 posições e 
+PDF1: Quando não houver dado/conteúdo para o preenchimento de um campo qualquer, verificar qual é a sintaxe do campo e 
+PDF1: preenchê-lo totalmente com zeros se for numérico ou totalmente com espaços se for alfanumérico. 
+PDF1: 3 
+PDF1: 4 
+PDF1:  OCCURS = 1   (P/ CADA ARQUIVO GERADO) 
+PDF1: 4.  DATA N 6 74 M DDMMAA (ESTA DATA É DE USO DA APLICAÇÃO 
+PDF1: EDI, NÃO SENDO NECESSÁRIA ESTAR NO 
+PDF1: FORMATO DDMMAAAA). 
+PDF1: OBS: FORMATO   A = ALFANUMÉRICOS (CARACTERES MAIÚSCULOS) 
+PDF1:       N = NUMÉRICOS 
+PDF1:      STATUS    M = PREENCHIMENTO OBRIGATÓRIO (SE O REGISTRO FOR GERADO/PREENCHIDO) 
+PDF1:       C = PREENCHIMENTO CONDICIONAL (PODE OU NÃO SER PREENCHIDO). 
+PDF1: 5 
+PDF1:  OCCURS = 200 (P/ CADA REG. "000") 
+PDF1: 6 
+PDF1:  OCCURS = 1 (P/ CADA REG. "350") 
+PDF1: 2.  C.G.C. N 14 04 M  
+PDF1: 7 
+PDF1:  OCCURS = 100 (P/ CADA REG. "351") 
+PDF1: 8 
+PDF1: REGISTRO: D C O  - DOCUMENTO DE COBRANÇA - CONTINUAÇÃO TAMANHO DO REGISTRO: 170 (DDF = 340) 
+PDF1:  OCCURS = 100 (P/ CADA REG. "351") 
+PDF1: 19.  AÇÃO DO DOCUMENTO A 1 167 C I = INCLUIR; 
+PDF1: OBS.: PARA AS TRANSPORTADORAS QUE PRESTAM SERVIÇO PARA A  DDF,  SERÁ NECESSÁRIA A  GRAVAÇÃO DE DADOS  ESPECÍFICOS  DESTE 
+PDF1:        EMBARCADOR A PARTIR DA  POSIÇÃO 171  COM TAMANHO TOTAL DE  170 POSIÇÕES,  CONSEQUENTEMENTE,  QUANDO ESTE  REGISTRO 
+PDF1:        FOR GERADO PARA A DDF O MESMO TERÁ O TAMANHO DE 340 BYTES. 
+PDF1: 9 
+PDF1:  OCCURS = 100 (P/ CADA REG. "352") 
+PDF1: 5.  FILLER A 140 31 C PREENCHER COM BRANCOS 
+PDF1: 10 
+PDF1: 11 
+PDF1:  OCCURS = 1  (P/ CADA REG. "350") 
+
+
+Linhas presentes no PDF2 e ausentes no PDF1:
+
+PDF2: Lay-out do Arquivo de Cobrança – DOCCOB         Página: 1 
+PDF2: Lay-out do Arquivo de Cobrança – DOCCOB         Página: 2 
+PDF2:  A mensagem DOCCOB–Documento de Cobrança é gerada pelas Transportadoras para transmissão às empresas Clientes (Contratantes 
+PDF2: do frete ou Embarcadoras), visando fornecer uma cópia eletrônica da Nota Fiscal/Fatura de serviço emitida para a cobrança dos 
+PDF2: serviços de transporte de carga prestados à Embarcadora. 
+PDF2:  Essa cobrança deverá seguir os critérios acordados entre as partes em relação ao período de cobrança (semanal, quinzenal, 
+PDF2: etc.) e em relação ao que cobrar ou não (entregas completas, parciais, etc.). 
+PDF2:  A geração/gravação dos registros que compõem esse arquivo pode ser Condicional, ou seja, o registro pode ou não ser gerado 
+PDF2: em função de uma determinada situação, ou Mandatório, nesse caso, o registro deve ser sempre gerado, pois a falta desse 
+PDF2: registro irá caracterizar erro de formatação do arquivo. 
+PDF2:  Os registros que compõem esse arquivo são de tamanho fixo, todos devem possuir o mesmo tamanho conforme especificado no 
+PDF2: lay-out. Caso haja alguma dificuldade para gerar os registros com essa característica, recomendamos gravar um caractere, 
+PDF2: por exemplo, ‘.’ (ponto) ou ‘*’ (asterisco) na última posição do registro. 
+PDF2:  Respeitar o número de ocorrências definido para cada registro, isso vale tanto para a geração do arquivo, como também para 
+PDF2: a leitura. A não observação dessa definição poderá acarretar erro no processamento do arquivo. 
+PDF2: - A = Campo alfanumérico, o conteúdo deve ser alinhado à esquerda e com espaços a direita até o tamanho máximo. 
+PDF2: - N = Campo numérico, conteúdo deve ser alinhado à direita e completado até o tamanho máximo com zeros à esquerda. 
+PDF2: - 9 = O Número após a letra, indica o tamanho total/máximo ocupado pelo campo. Caso o campo possua alguma casa decimal, 
+PDF2: por exemplo, campo de valor, a representação será: 9,2, onde 9 é o número de casas inteiras e 2 o número de casas decimais, 
+PDF2: o tamanho total do campo é de 11 posições. NÃO há representação explícita do ponto/vírgula decimal. Exemplos: A 
+PDF2: 35, campo alfanumérico de 35 posições; 
+PDF2:  N 6, campo numérico de 6 posições e 
+PDF2: Quando não houver dado/conteúdo para o preenchimento de um campo qualquer, verificar qual é a sintaxe do campo e preenchê-lo 
+PDF2: totalmente com zeros se for numérico ou totalmente com espaços se for alfanumérico. 
+PDF2: Lay-out do Arquivo de Cobrança – DOCCOB         Página: 3 
+PDF2:  OCORRE = 1   (P/ CADA ARQUIVO GERADO) 
+PDF2: 4.  DATA N 6 74 M DDMMAA (ESTA DATA É DE USO DA APLICAÇÃO EDI, 
+PDF2: NÃO SENDO NECESSÁRIA ESTAR NO FORMATO 
+PDF2: DDMMAAAA). 
+PDF2:  OCORRE = 200 (P/ CADA REG. "000") 
+PDF2: Lay-out do Arquivo de Cobrança – DOCCOB         Página: 4 
+PDF2:  OCORRE = 1 (P/ CADA REG. "350") 
+PDF2: 2.  C.G.C. N 14 04 M SEM EDIÇÃO (PONTOS E HÍFEN) 
+PDF2: Lay-out do Arquivo de Cobrança – DOCCOB         Página: 5 
+PDF2:  OCORRE = 100 (P/ CADA REG. "351") 
+PDF2: 19.  AÇÃO DO DOCUMENTO A 1 167 C 
+PDF2: I = INCLUIR; 
+PDF2: OBS.: PARA A DANZAS (ex-DDF), DEVE HAVER A GRAVAÇÃO DE DADOS ESPECÍFICOS DESSA EMPRESA A PARTIR DA POSIÇÃO 171 COM TAMANHO 
+PDF2: DE 170 BYTES, O QUE RESULTA EM UM REGISTRO COM TAMANHO TOTAL DE 340 POSIÇÕES (BYTES). 
+PDF2: Lay-out do Arquivo de Cobrança – DOCCOB         Página: 6 
+PDF2:  OCORRE = 100 (P/ CADA REG. "352") 
+PDF2: 5.  VALOR DO FRETE (*) N 13,2 31 C  
+PDF2: 6.  DATA DE EMISSÃO DO CONHECIMENTO (*) N 8 46 C DDMMAAAA 
+PDF2: 7.  CGC DO REMETENTE – EMISSOR DA NF (*) N 14 54 C SEM EDIÇÃO (PONTOS E HÍFEN) 
+PDF2: 8.  CGC DO DESTINATÁRIO DA NF (*) N 14 68 C SEM EDIÇÃO (PONTOS E HÍFEN) 
+PDF2: 9.  CGC DO EMISSOR DO CONHECIMENTO (**) N 14 82 C SEM EDIÇÃO (PONTOS E HÍFEN) 
+PDF2: 10.  FILLER A 75 96 C PREENCHER COM BRANCOS 
+PDF2: (*) ALTERAÇÃO DE 02/2000 – INCLUSÃO DE NOVOS CAMPOS A PEDIDO DA REVLON E CODE – USO LIBERADO CASO HAJA NECESSIDADE. 
+PDF2: (**) ALTERAÇÃO DE 08/2002 – INCLUSÃO DE NOVO CAMPO A PEDIDO DA TEXACO – USO LIBERADO CASO HAJA NECESSIDADE. 
+PDF2: Lay-out do Arquivo de Cobrança – DOCCOB         Página: 7 
+PDF2: OBS.: REGISTRO OPCIONAL, PODE OU NÃO SER UTILIZADO. 
+PDF2:  OCORRE = 1  (P/ CADA REG. "350") 

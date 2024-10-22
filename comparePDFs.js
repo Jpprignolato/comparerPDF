@@ -1,25 +1,25 @@
 const express = require('express');
+const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const pdf = require('pdf-parse');
 
 const app = express();
-const port = 3001;
+const upload = multer({ dest: 'uploads/' });
+const port = 3000;
 
-// Servindo arquivos estáticos (HTML, CSS, JS)
+// Servindo arquivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Função para ler e extrair texto de um PDF
+// Função para ler o texto de um PDF
 function getPDFText(filePath) {
     return new Promise((resolve, reject) => {
         const dataBuffer = fs.readFileSync(filePath);
-        pdf(dataBuffer).then(data => {
-            resolve(data.text);
-        }).catch(reject);
+        pdf(dataBuffer).then(data => resolve(data.text)).catch(reject);
     });
 }
 
-// Função para encontrar as diferenças entre os textos
+// Função para encontrar diferenças entre PDFs
 function findDifferences(text1, text2) {
     const lines1 = text1.split('\n').filter(line => line.trim() !== '');
     const lines2 = text2.split('\n').filter(line => line.trim() !== '');
@@ -30,62 +30,47 @@ function findDifferences(text1, text2) {
     return { onlyInPDF1, onlyInPDF2 };
 }
 
-// Função para criar um arquivo de texto com as diferenças
-async function createDiffTXT(differences, outputFilePath) {
-    const { onlyInPDF1, onlyInPDF2 } = differences;
-
-    const textContent = [];
-
-    if (onlyInPDF1.length > 0) {
-        textContent.push('Linhas presentes no PDF1 e ausentes no PDF2:\n');
-        textContent.push(onlyInPDF1.map(line => `PDF1: ${line}`).join('\n'));
-    } else {
-        textContent.push('Não há linhas únicas no PDF1.\n');
-    }
-
-    textContent.push('\n'); // Linha em branco
-
-    if (onlyInPDF2.length > 0) {
-        textContent.push('Linhas presentes no PDF2 e ausentes no PDF1:\n');
-        textContent.push(onlyInPDF2.map(line => `PDF2: ${line}`).join('\n'));
-    } else {
-        textContent.push('Não há linhas únicas no PDF2.\n');
-    }
-
-    fs.writeFileSync(outputFilePath, textContent.join('\n'));
-}
-
-// Função principal
-async function main() {
-    const pdf1Path = 'C://Users//JoséPedroAlvesdaSilv//Desktop//ProjetosWeb//comparerPDF//PDFfolder//pdf1.pdf';
-    const pdf2Path = 'C://Users//JoséPedroAlvesdaSilv//Desktop//ProjetosWeb//comparerPDF//PDFfolder//pdf2.pdf';
-    const outputPath = path.join(__dirname, 'public/output.txt');
+// Endpoint para processar PDFs
+app.post('/compare-pdfs', upload.fields([{ name: 'pdf1' }, { name: 'pdf2' }]), async (req, res) => {
+    const pdf1Path = req.files['pdf1'][0].path;
+    const pdf2Path = req.files['pdf2'][0].path;
 
     try {
         const pdf1Text = await getPDFText(pdf1Path);
         const pdf2Text = await getPDFText(pdf2Path);
 
-        const different = pdf1Text !== pdf2Text;
+        const differences = findDifferences(pdf1Text, pdf2Text);
+        const result = [];
 
-        if (different) {
-            const differences = findDifferences(pdf1Text, pdf2Text);
-            await createDiffTXT(differences, outputPath);
-            console.log('Os PDFs são diferentes e um novo arquivo de texto com as diferenças foi criado.');
+        if (differences.onlyInPDF1.length > 0) {
+            result.push('Diferenças no PDF1:\n');
+            result.push(differences.onlyInPDF1.join('\n'));
         } else {
-            console.log('Os PDFs são iguais.');
+            result.push('PDF1 não tem diferenças únicas.\n');
         }
+
+        result.push('\n'); // Espaço entre os blocos
+
+        if (differences.onlyInPDF2.length > 0) {
+            result.push('Diferenças no PDF2:\n');
+            result.push(differences.onlyInPDF2.join('\n'));
+        } else {
+            result.push('PDF2 não tem diferenças únicas.\n');
+        }
+
+        // Retorna o resultado como texto para ser exibido no frontend
+        res.send(result.join('\n'));
     } catch (error) {
         console.error('Erro ao processar os PDFs:', error);
+        res.status(500).send('Erro ao processar os PDFs.');
+    } finally {
+        // Remover os arquivos temporários após a comparação
+        fs.unlinkSync(pdf1Path);
+        fs.unlinkSync(pdf2Path);
     }
-}
-
-// Executa a função principal
-main();
+});
 
 // Inicia o servidor
 app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`);
 });
-
-
-// Teste

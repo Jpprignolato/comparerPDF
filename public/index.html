@@ -3,13 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comparação de PDFs</title>
+    <title>Comparador de PDFs</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Diferenças entre os PDFs</h1>
-        <pre id="output"></pre>
+        <h1>Comparar PDFs</h1>
+        <form id="pdfForm">
+            <div class="file-input">
+                <label for="pdf1">Selecione o primeiro PDF:</label>
+                <input type="file" id="pdf1" accept="application/pdf" required>
+            </div>
+            <div class="file-input">
+                <label for="pdf2">Selecione o segundo PDF:</label>
+                <input type="file" id="pdf2" accept="application/pdf" required>
+            </div>
+            <button type="submit" id="compareBtn">Comparar PDFs</button>
+        </form>
+        <div id="result" class="hidden">
+            <h2>Diferenças:</h2>
+            <pre id="output"></pre>
+        </div>
     </div>
 
     <script src="script.js"></script>

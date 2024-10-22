@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,20 +10,16 @@
     <div class="container">
         <h1>Comparar PDFs</h1>
         <form id="pdfForm">
-            <div class="file-input">
-                <label for="pdf1">Selecione o primeiro PDF:</label>
-                <input type="file" id="pdf1" accept="application/pdf" required>
-            </div>
-            <div class="file-input">
-                <label for="pdf2">Selecione o segundo PDF:</label>
-                <input type="file" id="pdf2" accept="application/pdf" required>
-            </div>
-            <button type="submit" id="compareBtn">Comparar PDFs</button>
+            <label for="pdf1">Selecione o primeiro PDF:</label>
+            <input type="file" id="pdf1" name="pdf1" accept="application/pdf"><br><br>
+            
+            <label for="pdf2">Selecione o segundo PDF:</label>
+            <input type="file" id="pdf2" name="pdf2" accept="application/pdf"><br><br>
+            
+            <button type="submit">Comparar PDFs</button>
         </form>
-        <div id="result" class="hidden">
-            <h2>Diferenças:</h2>
-            <pre id="output"></pre>
-        </div>
+        
+        <div id="result"></div>
     </div>
 
     <script src="script.js"></script>

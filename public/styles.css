@@ -1,74 +1,65 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f9f9f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    font-family: Arial, sans-serif;
     margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
 }
 
 .container {
-    background-color: white;
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 600px;
-    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
 }
 
 h1 {
-    margin-bottom: 20px;
+    text-align: center;
     color: #333;
 }
 
-.file-input {
+form {
     margin-bottom: 20px;
-    text-align: left;
-}
-
-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
 }
 
 button {
-    padding: 10px 20px;
+    display: block;
+    width: 100%;
+    padding: 10px;
     background-color: #007BFF;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
 }
 
 button:hover {
     background-color: #0056b3;
 }
 
-.hidden {
-    display: none;
-}
-
 #result {
     margin-top: 20px;
 }
 
-pre {
-    background-color: #f1f1f1;
-    padding: 10px;
-    border-radius: 5px;
-    white-space: pre-wrap;
-    text-align: left;
+.pdf-comparison-result {
+    font-family: Arial, sans-serif;
 }
 
+.pdf-section {
+    margin-top: 20px;
+}
+
+.highlight-pdf1 {
+    background-color: #f8d7da;
+    padding: 2px 4px;
+    border-radius: 3px;
+    color: #721c24;
+}
+
+.highlight-pdf2 {
+    background-color: #d4edda;
+    padding: 2px 4px;
+    border-radius: 3px;
+    color: #155724;
+}

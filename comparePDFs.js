@@ -87,6 +87,34 @@ app.post('/compare', upload.fields([{ name: 'pdf1' }, { name: 'pdf2' }]), async 
         // Comparar os PDFs
         const differences = await comparePDFs(pdf1Path, pdf2Path);
 
+        // Verificar se os PDFs são iguais
+        if (differences.onlyInPDF1.length === 0 && differences.onlyInPDF2.length === 0) {
+            res.send('<div class="message-equal">Os dois arquivos PDF são idênticos.</div>');
+        } else {
+            // Gerar o HTML com as diferenças
+            const htmlResult = generateHTMLForDifferences(differences);
+            res.send(htmlResult);
+        }
+
+    } catch (error) {
+        res.status(500).send('Erro ao comparar PDFs: ' + error.message);
+    }
+});
+
+
+// Endpoint para upload e comparação de PDFs
+app.post('/compare', upload.fields([{ name: 'pdf1' }, { name: 'pdf2' }]), async (req, res) => {
+    const pdf1File = req.files['pdf1'][0];
+    const pdf2File = req.files['pdf2'][0];
+
+    try {
+        // Obter o caminho dos arquivos PDF
+        const pdf1Path = pdf1File.path;
+        const pdf2Path = pdf2File.path;
+
+        // Comparar os PDFs
+        const differences = await comparePDFs(pdf1Path, pdf2Path);
+
         // Gerar o HTML com as diferenças
         const htmlResult = generateHTMLForDifferences(differences);
         res.send(htmlResult);

@@ -35,7 +35,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #be3f04;
 }
 
 #result {
@@ -62,4 +62,10 @@ button:hover {
     padding: 2px 4px;
     border-radius: 3px;
     color: #155724;
+}
+
+.message-equal {
+    color: green;
+    font-weight: bold;
+    margin-top: 20px;
 }
